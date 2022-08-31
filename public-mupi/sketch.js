@@ -8,19 +8,19 @@ wrong = document.querySelector(".guess-loses span");
 const flavorList = [
   {
     flavor: "chocolate",
-    hint: "mix between Cacao and Milk",
+    hint: "Mix between Cacao and Milk",
   },
   {
     flavor: "chantilly",
-    hint: "a delicious white cream",
+    hint: "A delicious white cream",
   },
   {
     flavor: "arequipe",
-    hint: "liquid color caramel",
+    hint: "Liquid color caramel",
   },
   {
     flavor: "coco",
-    hint: "brown fruit from island",
+    hint: "Brown fruit from island",
   },
 ];
 const NGROK = `https://${window.location.hostname}`;
@@ -135,6 +135,7 @@ function startGame(key) {
 
   // Esta variable permite escribir sin necesidad de presionar el input.
   typingInput.value = "";
+  
   if(maxTries < 1){
     alert("gameover")
   }

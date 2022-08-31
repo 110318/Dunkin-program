@@ -13,7 +13,7 @@ function setup() {
 
     userInput = createInput('');
     userInput.position((windowWidth / 2) - 80, windowHeight - 100);
-    userInput.size(100);
+    userInput.size(200);
     userInput.input(myInputEvent);
 }
 
