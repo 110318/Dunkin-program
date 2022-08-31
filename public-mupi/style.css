@@ -1,23 +1,69 @@
+@font-face{
+    font-family: fuenteRandom;
+    src: url("Tipografias/Dunkin\ Sans.ttf");
+}
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
 }
 
+
 body{
     display: flex;
     align-items: center;
     justify-content: center;
+    font-family: fuenteRandom;
+    
     min-height: 100vh;
     background: #efddc7;
 }
+
 .wrapper{
     width: 700px;
     background: rgb(255, 255, 255);
     border-radius: 20px;
 }
+/*.img-div-center{
+    height: 800px;
+    position: relative;
+}
+*/
+.img-title{
+    width: 250px;
+    position: absolute;
+    top:10%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    
+
+}
+.img-dona{
+    width: 200px;
+    position: absolute;
+    top:3%;
+    left: 4%;
+    transform: translate(-50%,-50%);
+}
+.img-dona2{
+    width: 300px;
+    position: absolute;
+    top:80%;
+    left: 90%;
+    transform: translate(-50%,-50%);
+}
+.img-dona3{
+    width: 100px;
+    position: absolute;
+    top:50%;
+    left: 85%;
+    transform: translate(-50%,-50%);
+}
+
 .wrapper h1{
+text-align: center;    
     font-size: 25px;
+    color: #FF199E;
     font-weight: 1000;
     padding: 20px 30px;
     border-bottom: 1px solid rgb(195, 195, 195);
@@ -37,11 +83,11 @@ body{
 }
 .inputs input{
     height: 57px;
-    width: 56px;
+    width: 55px;
     margin: 6px;
     color: #f19011;
-    font-size: 30px;
-    font-weight: 500px;
+    font-size: 20px;
+    font-weight: 200px;
     border-radius: 5px;
     text-align: center;
     text-transform: uppercase;
@@ -56,7 +102,8 @@ body{
 }
 
 .details p{
-    font-size: 19px ;
+    font-family: 'Poppins', sans-serif;
+    font-size: 20px ;
     margin-bottom: 10px;
 }
 .content .reset-btn{

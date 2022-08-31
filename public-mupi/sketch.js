@@ -59,7 +59,7 @@ function setup() {
 }
 
 function draw() {
-  background(217, 202, 184);
+  background(255, 203, 181);
   newCursor(pmouseX, pmouseY);
   fill(255);
   textSize(32);
@@ -122,6 +122,9 @@ function startGame(game) {
 
   // Esta variable permite escribir sin necesidad de presionar el input.
   typingInput.value = "";
+  if(maxTries < 1){
+    alert("gameover")
+  }
 }
 
 // boton para resetear sabores
