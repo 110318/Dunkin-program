@@ -2,35 +2,37 @@ const NGROK = `https://${window.location.hostname}`;
 console.log('Server IP: ', NGROK);
 let socket = io(NGROK, { path: '/real-time' });
 
+
+let userInput;
+
 function setup() {
-    // crear un lienzo
-    createCanvas(710, 400);
-  
-    input = createInput();
-    input.position(20, 65);
-  
-    button = createButton('submit');
-    button.position(150, 65);
-    button.mousePressed(greet);
-  
-    greeting = createElement('h2', 'what is your name?');
-    greeting.position(20, 5);
-  
-    textAlign(CENTER);
-    textSize(50);
-  }
-  
-  function greet() {
-    const name = input.value();
-    greeting.html('hello ' + name + '!');
-    input.value('');
-    for (let i = 0; i < 200; i++) {
-        push();
-        fill(random(255), 255, 255);
-        translate(random(width), random(height));
-        rotate(random(2 * PI));
-        text(name, 0, 0);
-        pop();
-      }
-    }
-      
+    canvas = createCanvas(windowWidth, windowHeight);
+    canvas.style('position', 'fixed');
+    canvas.style('top', '0');
+    canvas.style('right', '0');
+
+    userInput = createInput('');
+    userInput.position((windowWidth / 2) - 80, windowHeight - 100);
+    userInput.size(100);
+    userInput.input(myInputEvent);
+}
+
+
+function myInputEvent() {
+    char = this.value()
+    console.log(char);
+
+
+    setTimeout(() => {
+        userInput.value('');
+    }, 2000);
+
+
+
+    socket.emit('char', {char: char});
+    console.log(socket)
+
+}
+
+
+

@@ -24,7 +24,7 @@ const flavorList = [
   },
 ];
 const NGROK = `https://${window.location.hostname}`;
-let socket = io(NGROK, { path: "/real-time" });
+let socket = io(NGROK, { path: '/real-time' });
 console.log("Server IP: ", NGROK);
 
 let controllerX,
@@ -56,15 +56,22 @@ function setup() {
   mupiWidth = windowWidth;
   mupiHeight = windowHeight;
   background(0);
+
+// Leyendo la letra que viene de la app
+  socket.on('showchar', char => {
+    key = char["char"].toLowerCase();
+    console.log(key)
+
+//LLamando a la función start game y le pasamos la letra que viene de la app
+    startGame(key);
+  });
+
+
 }
 
 function draw() {
   background(217, 202, 184);
-  newCursor(pmouseX, pmouseY);
-  fill(255);
-  textSize(32);
-  text("arbol", posX, posY);
-  ellipse(controllerX, controllerY, ballSize, ballSize);
+ 
 }
 
 function randomWord() {
@@ -77,6 +84,7 @@ function randomWord() {
   // Pistas sobre los sabores de Dona
   hint.innerText = ranObj.hint;
   guessTry.innerText = maxTries;
+  // wrong.innerText = "";
 
   let html = "";
   for (let i = 0; i < word.length; i++) {
@@ -86,10 +94,10 @@ function randomWord() {
 }
 randomWord();
 
-function startGame(game) {
+function startGame(key) {
   // Target devuelve un elemento DOM que podemos recuperar sus atributos
   // En este caso el valor de la tecla del teclado
-  let key = game.target.value;
+
   //.match Se usa para obtener todas las ocurrencias.
   // En este caso vamos a usarlo para solo manejar letras, ningun otro simbolo de computador EJ: {}
   if (
@@ -117,18 +125,33 @@ function startGame(game) {
     }
     //muestra el numero de intentos
     guessTry.innerText = maxTries;
-    wrong.innerText = incorrectWords;
+  //  wrong.innerText = incorrectWords;
   }
 
   // Esta variable permite escribir sin necesidad de presionar el input.
   typingInput.value = "";
+
+
 }
 
 // boton para resetear sabores
 resetBtn.addEventListener("click", randomWord);
 //permite el uso del teclado para mandar respuesta al input
-typingInput.addEventListener("input", startGame);
-document.addEventListener("keydown", () => typingInput.focus());
+
+
+
+
+
+
+
+
+
+
+
+
+
+// typingInput.addEventListener("input", startGame);
+// document.addEventListener("keydown", () => typingInput.focus());
 
 function mouseDragged() {
   socket.emit("positions", { controlX: pmouseX, controlY: pmouseY });
@@ -144,34 +167,4 @@ function newCursor(x, y) {
   ellipse(x, y, 10, 10);
 }
 
-socket.on("mupi-instructions", (instructions) => {
-  console.log("ID: " + socket.id);
-  //pmouse variable propia de p5
-  let { interactions } = instructions;
-  switch (interactions) {
-    case 0:
-      let { pmouseX, pmouseY } = instructions;
-      controllerX = (pmouseX * mupiWidth) / deviceWidth;
-      controllerY = (pmouseY * mupiHeight) / deviceHeight;
-      console.log({ controllerX, controllerY });
-      break;
-    case 1:
-      let { pAccelerationX, pAccelerationY, pAccelerationZ } = instructions;
-      ballSize = pAccelerationY < 0 ? pAccelerationY * -2 : pAccelerationY * 2;
-      break;
-    case 2:
-      let { rotationX, rotationY, rotationZ } = instructions;
-      controllerY = (rotationX * mupiHeight) / 90;
-      controllerX = (rotationY * mupiWidth) / 90;
-      break;
-  }
-});
 
-socket.on("mupi-size", (deviceSize) => {
-  let { windowWidth, windowHeight } = deviceSize;
-  deviceWidth = windowWidth;
-  deviceHeight = windowHeight;
-  console.log(
-    `User is using a smartphone size of ${deviceWidth} and ${deviceHeight}`
-  );
-});

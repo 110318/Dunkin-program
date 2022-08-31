@@ -18,19 +18,16 @@ const httpServer = app.listen(PORT, () => {
 });
 // Run on terminal: ngrok http 5050;
 
+
 const io = new Server(httpServer, { path: '/real-time' });
 
 io.on('connection', socket => {
     console.log(socket.id);
 
-    socket.on('device-size', deviceSize => {
-        socket.broadcast.emit('mupi-size', deviceSize);
+    socket.on('char', char => {
+        socket.broadcast.emit('showchar', char);
     });
 
-    socket.on('mobile-instructions', instructions => {
-        console.log(instructions);
-        socket.broadcast.emit('mupi-instructions', instructions);
-    })
 });
 
 
