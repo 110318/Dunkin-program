@@ -29,6 +29,18 @@ body{
     position: relative;
 }
 */
+.marketing{
+    width: 1560px;
+    height: 750px;
+    position: absolute;
+    top:50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    z-index: 1;
+    display: block;
+    
+
+}
 .img-title{
     width: 250px;
     position: absolute;
@@ -116,4 +128,8 @@ text-align: center;
     padding: 15px 0;
     background: #ff12c8;
     border-radius: 5px;
+}
+button{
+    background-color: aquamarine;
+    
 }

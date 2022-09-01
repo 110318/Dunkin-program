@@ -1,10 +1,13 @@
 //Siempre tener en cuenta
 const inputs = document.querySelector(".inputs");
+hideImg = document.querySelector(".show-btn");
 resetBtn = document.querySelector(".reset-btn");
 hint = document.querySelector(".hint span");
 guessTry = document.querySelector(".guess-tries span");
 typingInput = document.querySelector(".typing-input");
 wrong = document.querySelector(".guess-loses span");
+advertising = document.querySelectorAll(".marketing")
+
 const flavorList = [
   {
     flavor: "chocolate",
@@ -24,7 +27,7 @@ const flavorList = [
   },
 ];
 const NGROK = `https://${window.location.hostname}`;
-let socket = io(NGROK, { path: '/real-time' });
+let socket = io(NGROK, { path: "/real-time" });
 console.log("Server IP: ", NGROK);
 
 let controllerX,
@@ -57,16 +60,14 @@ function setup() {
   mupiHeight = windowHeight;
   background(0);
 
-// Leyendo la letra que viene de la app
-  socket.on('showchar', char => {
+  // Leyendo la letra que viene de la app
+  socket.on("showchar", (char) => {
     key = char["char"].toLowerCase();
-    console.log(key)
+    console.log(key);
 
-//LLamando a la función start game y le pasamos la letra que viene de la app
+    //LLamando a la función start game y le pasamos la letra que viene de la app
     startGame(key);
   });
-
-
 }
 
 function draw() {
@@ -75,6 +76,7 @@ function draw() {
   fill(255);
   textSize(32);
   text("arbol", posX, posY);
+
   ellipse(controllerX, controllerY, ballSize, ballSize);
 }
 
@@ -95,9 +97,10 @@ function randomWord() {
     html += ` <input type="text" disabled>`;
   }
   inputs.innerHTML = html;
-  
 }
 randomWord();
+
+function showMerch() {}
 
 function startGame(key) {
   // Target devuelve un elemento DOM que podemos recuperar sus atributos
@@ -130,14 +133,14 @@ function startGame(key) {
     }
     //muestra el numero de intentos
     guessTry.innerText = maxTries;
-  //  wrong.innerText = incorrectWords;
+    //  wrong.innerText = incorrectWords;
   }
 
   // Esta variable permite escribir sin necesidad de presionar el input.
   typingInput.value = "";
-  
-  if(maxTries < 1){
-    alert("gameover")
+
+  if (maxTries < 1) {
+    alert("gameover");
   }
 }
 
@@ -145,9 +148,12 @@ function startGame(key) {
 resetBtn.addEventListener("click", randomWord);
 //permite el uso del teclado para mandar respuesta al input
 
+<<<<<<< HEAD
 
 
 
+=======
+>>>>>>> 9a65fa4328def25ee7fe7d4447852205c2df7fde
 // typingInput.addEventListener("input", startGame);
 // document.addEventListener("keydown", () => typingInput.focus());
 
@@ -164,5 +170,3 @@ function newCursor(x, y) {
   fill(255, 0, 0);
   ellipse(x, y, 10, 10);
 }
-
-

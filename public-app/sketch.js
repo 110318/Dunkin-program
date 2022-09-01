@@ -5,6 +5,21 @@ let socket = io(NGROK, { path: '/real-time' });
 
 let userInput;
 
+let isTouched = false
+//let boton = document.querySelectorAll(".boton")
+/*
+boton.forEach(function(elemento,index){
+    elemento.addEventListener("click",function(){
+
+    })
+})
+*/
+
+let btn = createButton("No mostrar")
+btn.mousePressed(function(){
+    DeviceMotionEvent.requestPermission();
+})
+
 function setup() {
     canvas = createCanvas(windowWidth, windowHeight);
     canvas.style('position', 'fixed');
@@ -15,6 +30,8 @@ function setup() {
     userInput.position((windowWidth / 2) - 80, windowHeight - 100);
     userInput.size(200);
     userInput.input(myInputEvent);
+
+  
 }
 
 // Coge el valor que viene de la integración
@@ -36,5 +53,13 @@ function myInputEvent() {
 
 }
 
+function touchStarted(){
+    isTouched = true;
+}
+function touchEnded(){
+    isTouched = false
+}
 
-
+function windowResized(){
+    resizeCanvas(windowWidth,windowHeight);
+}
