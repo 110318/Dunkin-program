@@ -44,6 +44,7 @@ let word,
   incorrectWords = [],
   maxTries;
 let screen = 0
+let img;
 
 function setup() {
   frameRate(60);
@@ -80,6 +81,7 @@ function draw() {
   switch(screen){
     case 0:
       //deberia ir aqui la imagen
+      image(img,0,0)
       break;
     case 1:
       startGame()
@@ -89,6 +91,12 @@ break;
   }
 
   ellipse(controllerX, controllerY, ballSize, ballSize);
+}
+
+
+
+function preload(){
+  img = loadImage('img/MUPI MARKETING.png')
 }
 
 function randomWord() {
