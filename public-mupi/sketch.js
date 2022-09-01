@@ -61,6 +61,8 @@ function setup() {
   mupiHeight = windowHeight;
   background(0);
 
+let key;
+
   // Leyendo la letra que viene de la app
   socket.on("showchar", (char) => {
     key = char["char"].toLowerCase();
@@ -77,12 +79,15 @@ function draw() {
   fill(255);
   textSize(32);
   text("arbol", posX, posY);
+
+console.log(screen)
+
   switch(screen){
     case 0:
       //deberia ir aqui la imagen
       break;
     case 1:
-      startGame()
+      startGame(key)
       randomWord()
 break;
 
@@ -96,7 +101,7 @@ function randomWord() {
   let ranObj = flavorList[Math.floor(Math.random() * flavorList.length)];
   word = ranObj.flavor; // obtiene el sabor de la dona
   maxTries = 8;
-  console.log(ranObj);
+  //console.log(ranObj);
 
   // Pistas sobre los sabores de Dona
   hint.innerText = ranObj.hint;
@@ -159,10 +164,7 @@ function startGame(key) {
 resetBtn.addEventListener("click", randomWord);
 //permite el uso del teclado para mandar respuesta al input
 
-<<<<<<< HEAD
 
-=======
->>>>>>> 9699b5aad5eba20754aab05a4135f567ba9da9a6
 // typingInput.addEventListener("input", startGame);
 // document.addEventListener("keydown", () => typingInput.focus());
 
@@ -178,4 +180,10 @@ function newCursor(x, y) {
   noStroke();
   fill(255, 0, 0);
   ellipse(x, y, 10, 10);
+}
+
+function mousePressed() {
+  if(screen == 0){
+    screen = 1;
+  }
 }
