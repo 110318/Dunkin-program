@@ -184,3 +184,9 @@ function newCursor(x, y) {
   fill(255, 0, 0);
   ellipse(x, y, 10, 10);
 }
+
+function mousePressed(){
+  if(screen ==0){
+    screen = 1
+  }
+}
