@@ -43,6 +43,7 @@ let word,
   corrects = [],
   incorrectWords = [],
   maxTries;
+let screen = 0
 
 function setup() {
   frameRate(60);
@@ -76,6 +77,16 @@ function draw() {
   fill(255);
   textSize(32);
   text("arbol", posX, posY);
+  switch(screen){
+    case 0:
+      //deberia ir aqui la imagen
+      break;
+    case 1:
+      startGame()
+      randomWord()
+break;
+
+  }
 
   ellipse(controllerX, controllerY, ballSize, ballSize);
 }
