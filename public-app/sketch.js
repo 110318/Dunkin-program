@@ -17,18 +17,20 @@ function setup() {
     userInput.input(myInputEvent);
 }
 
-
+// Coge el valor que viene de la integración
+//This.value es el valor
 function myInputEvent() {
     char = this.value()
     console.log(char);
 
-
+//Espera los segundos del time out y limpia para que quede limpio
     setTimeout(() => {
         userInput.value('');
-    }, 2000);
+    }, 1000);
 
-
-
+//Envia el sistema char y dice que el valor esta en char y lo muestra por consola para ver que esta haciendo
+//Char es el nombre del evento que se esta transmitiendo
+//Clave y valor del diccionario y adentro esta lo que se escribe con el celular
     socket.emit('char', {char: char});
     console.log(socket)
 

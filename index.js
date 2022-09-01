@@ -6,7 +6,6 @@ const SERVER_IP = '192.168.20.36'; // Cambiar por la IP del computador
 
 //const os = require('os');
 //const IPaddress = os.networkInterfaces().en0[1].address;
-
 const app = express();
 app.use(express.json());
 app.use('/app', express.static('public-app'));
@@ -16,9 +15,8 @@ const httpServer = app.listen(PORT, () => {
     console.log(`http://${SERVER_IP}:${PORT}/app`);
     console.log(`http://${SERVER_IP}:${PORT}/mupi`);
 });
+
 // Run on terminal: ngrok http 5050;
-
-
 const io = new Server(httpServer, { path: '/real-time' });
 
 io.on('connection', socket => {

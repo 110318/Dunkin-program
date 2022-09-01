@@ -148,15 +148,6 @@ resetBtn.addEventListener("click", randomWord);
 
 
 
-
-
-
-
-
-
-
-
-
 // typingInput.addEventListener("input", startGame);
 // document.addEventListener("keydown", () => typingInput.focus());
 
