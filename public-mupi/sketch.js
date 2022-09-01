@@ -43,6 +43,7 @@ let word,
   corrects = [],
   incorrectWords = [],
   maxTries;
+let screen = 0
 
 function setup() {
   frameRate(60);
@@ -76,6 +77,16 @@ function draw() {
   fill(255);
   textSize(32);
   text("arbol", posX, posY);
+  switch(screen){
+    case 0:
+      //deberia ir aqui la imagen
+      break;
+    case 1:
+      startGame()
+      randomWord()
+break;
+
+  }
 
   ellipse(controllerX, controllerY, ballSize, ballSize);
 }
@@ -148,7 +159,10 @@ function startGame(key) {
 resetBtn.addEventListener("click", randomWord);
 //permite el uso del teclado para mandar respuesta al input
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 9699b5aad5eba20754aab05a4135f567ba9da9a6
 // typingInput.addEventListener("input", startGame);
 // document.addEventListener("keydown", () => typingInput.focus());
 
