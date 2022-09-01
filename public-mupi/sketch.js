@@ -44,6 +44,7 @@ let word,
   incorrectWords = [],
   maxTries;
 let screen = 0
+let img;
 
 function setup() {
   frameRate(60);
@@ -71,7 +72,13 @@ let key;
     //LLamando a la función start game y le pasamos la letra que viene de la app
     startGame(key);
   });
+
+  if(screen == 1){
+    randomWord()
+  }
 }
+
+
 
 function draw() {
   background(255, 203, 181);
@@ -81,19 +88,29 @@ function draw() {
   text("arbol", posX, posY);
 
 console.log(screen)
+let miContenedor = document.getElementById("wrapper");
 
   switch(screen){
     case 0:
       //deberia ir aqui la imagen
+      image(img,0,0)
+      miContenedor.style('display', 'none');
       break;
     case 1:
       startGame(key)
-      randomWord()
+      miContenedor.style('display', 'block');
+
 break;
 
   }
 
   ellipse(controllerX, controllerY, ballSize, ballSize);
+}
+
+
+
+function preload(){
+  img = loadImage('img/MUPI MARKETING.png')
 }
 
 function randomWord() {
@@ -182,8 +199,10 @@ function newCursor(x, y) {
   ellipse(x, y, 10, 10);
 }
 
-function mousePressed() {
-  if(screen == 0){
-    screen = 1;
+
+
+function mousePressed(){
+  if(screen ==0){
+    screen = 1
   }
 }
