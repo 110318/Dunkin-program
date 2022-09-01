@@ -167,6 +167,10 @@ function startGame(key) {
 resetBtn.addEventListener("click", randomWord);
 //permite el uso del teclado para mandar respuesta al input
 
+<<<<<<< HEAD
+
+=======
+>>>>>>> 9699b5aad5eba20754aab05a4135f567ba9da9a6
 // typingInput.addEventListener("input", startGame);
 // document.addEventListener("keydown", () => typingInput.focus());
 
