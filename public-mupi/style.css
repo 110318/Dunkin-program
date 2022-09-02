@@ -41,6 +41,18 @@ body{
     
 
 }
+.QR{
+    width: 250px;
+    height: 250px;
+    position: absolute;
+    top:80%;
+    left: 30%;
+    transform: translate(-50%,-50%);
+    z-index: 1;
+    
+    
+
+}
 .img-title{
     width: 250px;
     position: absolute;

@@ -10,21 +10,18 @@ advertising = document.querySelectorAll(".marketing")
 
 const flavorList = [
   {
-    flavor: "chocolate",
-    hint: "Mix between Cacao and Milk",
+    flavor: "cherry",
+    hint: "Explosive red fruit, we can found in our ice cream",
   },
   {
-    flavor: "chantilly",
-    hint: "A delicious white cream",
-  },
-  {
-    flavor: "arequipe",
-    hint: "Liquid color caramel",
+    flavor: "limon",
+    hint: "Green acid fruit",
   },
   {
     flavor: "coco",
-    hint: "Brown fruit from island",
+    hint: "A delicious brown fruit from island",
   },
+ 
 ];
 const NGROK = `https://${window.location.hostname}`;
 let socket = io(NGROK, { path: "/real-time" });
@@ -167,7 +164,7 @@ function startGame(key) {
 }
 
 // boton para resetear sabores
-resetBtn.addEventListener("click", randomWord);
+//resetBtn.addEventListener("click", randomWord);
 //permite el uso del teclado para mandar respuesta al input
 
 
