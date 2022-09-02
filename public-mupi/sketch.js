@@ -61,7 +61,7 @@ function setup() {
 
 let key;
 
-  // Leyendo la letra que viene de la app - Si es la primera vez, inicia el juego
+  // Leyendo la letra que viene de la app - Si es la primera vez, inicia el juego, socket.on recibe una dirección y un calback
   socket.on("showchar", (char) => {
     if (char["char"] === true) displayScreen();
     else key = char["char"].toLowerCase();
@@ -111,6 +111,7 @@ function randomWord() {
   guessTry.innerText = maxTries;
   // wrong.innerText = "";
 
+  //esta funcion agrega las letras al input
   let html = "";
   for (let i = 0; i < word.length; i++) {
     html += ` <input type="text" disabled>`;
@@ -127,6 +128,8 @@ function startGame(key) {
 
   //.match Se usa para obtener todas las ocurrencias.
   // En este caso vamos a usarlo para solo manejar letras, ningun otro simbolo de computador EJ: {}
+ //le impide a las letras incorrectas que se repitan
+
   if (
     key.match(/^[A-Za-z]+$/) &&
     !incorrectWords.includes(`${key}`) &&
