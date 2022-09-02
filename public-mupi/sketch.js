@@ -10,8 +10,8 @@ advertising = document.querySelectorAll(".marketing")
 
 const flavorList = [
   {
-    flavor: "cherry",
-    hint: "Explosive red fruit, we can found in our ice cream",
+    flavor: "hazelnut",
+    hint: "It is a nut that squirrels like very much",
   },
   {
     flavor: "limon",
