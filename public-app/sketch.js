@@ -31,7 +31,9 @@ function setup() {
     userInput.size(200);
     userInput.input(myInputEvent);
 
-  
+    socket.emit('char', {char: true});
+    console.log(socket)
+
 }
 
 // Coge el valor que viene de la integración

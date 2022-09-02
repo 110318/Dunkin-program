@@ -64,10 +64,10 @@ function setup() {
 
 let key;
 
-  // Leyendo la letra que viene de la app
+  // Leyendo la letra que viene de la app - Si es la primera vez, inicia el juego
   socket.on("showchar", (char) => {
-    key = char["char"].toLowerCase();
-    console.log(key);
+    if (char["char"] === true) displayScreen();
+    else key = char["char"].toLowerCase();
 
     //LLamando a la función start game y le pasamos la letra que viene de la app
     startGame(key);
@@ -88,26 +88,15 @@ function draw() {
   text("arbol", posX, posY);
 
 console.log(screen)
-let miContenedor = document.getElementById("wrapper");
-
-  switch(screen){
-    case 0:
-      //deberia ir aqui la imagen
-      image(img,0,0)
-      miContenedor.style('display', 'none');
-      break;
-    case 1:
-      startGame(key)
-      miContenedor.style('display', 'block');
-
-break;
-
-  }
 
   ellipse(controllerX, controllerY, ballSize, ballSize);
 }
 
 
+function displayScreen(){
+  mupiMarketing = document.querySelector("#imgMarketing");
+  mupiMarketing.style.display = "none";
+}
 
 function preload(){
   img = loadImage('img/MUPI MARKETING.png')
