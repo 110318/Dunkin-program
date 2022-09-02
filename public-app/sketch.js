@@ -31,6 +31,7 @@ function setup() {
     userInput.size(200);
     userInput.input(myInputEvent);
 
+    
     socket.emit('char', {char: true});
     console.log(socket)
 
