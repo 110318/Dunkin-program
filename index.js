@@ -26,12 +26,11 @@ const io = new Server(httpServer, { path: '/real-time' });
 
 //atributos que trae el socket.io, por ejemplo on que recibe las instrucciones del app
 io.on('connection', socket => {
-    console.log(socket.id);
-
     socket.on('char', char => {
         socket.broadcast.emit('showchar', char);
     });
 
+    socket.on('has_won', value => {
+        socket.broadcast.emit('has_won', value);
+    })
 });
-
-

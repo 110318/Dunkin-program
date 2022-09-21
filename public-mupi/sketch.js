@@ -14,7 +14,7 @@ const flavorList = [
     hint: "It is a nut that squirrels like very much",
   },
   {
-    flavor: "limon",
+    flavor: "lemon",
     hint: "Green acid fruit",
   },
   {
@@ -69,13 +69,11 @@ let key;
     //LLamando a la función start game y le pasamos la letra que viene de la app
     startGame(key);
   });
-
+  
   if(screen == 1){
     randomWord()
   }
 }
-
-
 
 function draw() {
   background(255, 203, 181);
@@ -84,12 +82,12 @@ function draw() {
   textSize(32);
   text("arbol", posX, posY);
 
-console.log(screen)
+  console.log(screen)
 
   ellipse(controllerX, controllerY, ballSize, ballSize);
 }
 
-
+//Estamos llamando los atributos de la imagen
 function displayScreen(){
   mupiMarketing = document.querySelector("#imgMarketing");
   mupiMarketing.style.display = "none";
@@ -104,7 +102,6 @@ function randomWord() {
   let ranObj = flavorList[Math.floor(Math.random() * flavorList.length)];
   word = ranObj.flavor; // obtiene el sabor de la dona
   maxTries = 8;
-  //console.log(ranObj);
 
   // Pistas sobre los sabores de Dona
   hint.innerText = ranObj.hint;
@@ -120,8 +117,6 @@ function randomWord() {
 }
 randomWord();
 
-function showMerch() {}
-
 function startGame(key) {
   // Target devuelve un elemento DOM que podemos recuperar sus atributos
   // En este caso el valor de la tecla del teclado
@@ -136,7 +131,7 @@ function startGame(key) {
     !corrects.includes(key)
   ) {
     console.log(key);
-
+    // Se validan las palabras y las teclas correctas
     if (word.includes(key)) {
       for (let i = 0; i < word.length; i++) {
         if (word[i] === key) {
@@ -161,9 +156,23 @@ function startGame(key) {
   // Esta variable permite escribir sin necesidad de presionar el input.
   typingInput.value = "";
 
-  if (maxTries < 1) {
-    alert("gameover");
-  }
+  setTimeout(()=>{
+    
+    if (corrects.length === word.length) {
+      socket.emit('has_won', true);
+      alert("Congratulations! you won a coupon, please register and we send you to the email a surprise");
+      window.location.reload(true);
+    }else if (maxTries < 0) {
+      socket.emit('has_won', false);
+      alert("gameover");
+      window.location.reload(true)
+       for (let i = 0; i < word.length; i++) {
+        //Este if nos permite alertarle al usuario que sus intentos ya pasaron.
+        //muestra el sabor que era correcto
+        inputs.querySelectorAll("input")[i].value = word[i];
+       }
+    }
+  },500);
 }
 
 // boton para resetear sabores
@@ -174,10 +183,6 @@ function startGame(key) {
 // typingInput.addEventListener("input", startGame);
 // document.addEventListener("keydown", () => typingInput.focus());
 
-function mouseDragged() {
-  socket.emit("positions", { controlX: pmouseX, controlY: pmouseY });
-}
-
 function windowResized() {
   resizeCanvas(windowWidth, windowHeight);
 }
@@ -187,8 +192,6 @@ function newCursor(x, y) {
   fill(255, 0, 0);
   ellipse(x, y, 10, 10);
 }
-
-
 
 function mousePressed(){
   if(screen ==0){

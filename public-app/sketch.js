@@ -31,11 +31,24 @@ function setup() {
     userInput.size(200);
     userInput.input(myInputEvent);
 
-    
     socket.emit('char', {char: true});
     console.log(socket)
 
+    socket.on('has_won', (value) => {
+        console.log("hey! esta es mi value",value)
+        userInput.hide();
+        displayScreens();
+    });
 }
+
+function displayScreens(){
+    appWrapper = document.querySelector('#seccion-uno');
+    appWrapper.style.display = "none"
+
+    appForm = document.querySelector('#formulario')
+    appForm.style.display = "block"
+}
+
 
 // Coge el valor que viene de la integración
 //This.value es el valor
@@ -46,7 +59,7 @@ function myInputEvent() {
 //Espera los segundos del time out y limpia para que quede limpio
     setTimeout(() => {
         userInput.value('');
-    }, 1000);
+    }, 200);
 
 //Envia el sistema char y dice que el valor esta en char y lo muestra por consola para ver que esta haciendo
 //Char es el nombre del evento que se esta transmitiendo
