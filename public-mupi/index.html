@@ -1,59 +1,15 @@
 <!DOCTYPE html>
-<html lang="es-ES">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>🖥 Mupi</title>
-    <style>
-        #imgMarketing{
-            display: block;
-        }
-    </style>
     <link rel="stylesheet" href="style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
 </head>
 
 <body>
-  <!-- Contiene la publicidad del MUPI           -->
-    <div id="imgMarketing">
-            <img class = "marketing" src="img/MUPI MARKETING.png" alt="MUPI">
-            <img class = "QR" src="img/qr-code.png" alt="">
-        </div>
-
- <!-- Contiene el contenido de la pagina de Dunkin       -->
-    <div class = "wrapper" id="contenedor">
-        <h1>WHAT IS THE RIGHT DONUT FLAVOR?</h1>      
-       <!--<div class = "img-div-center"></div>-->
-        <img class= "img-title" src="img/logo.png" alt="What is the flavor">
-        <img class= "img-dona" src="img/Dona.png" alt="Dona">
-        <img class= "img-dona2" src="img/Dona2.png" alt="Dona2">
-        <img class= "img-dona3" src="img/image 9.png" alt="Dona3">
-
-        <div id="pass-stage"></div>
-
-        <div class = "content">
-            <input type="text" class="typing-input" maxlength="1">
-        <div class = "inputs"></div>
-            </div>
-            
-            <div class = "details">
-                <p class = "hint"> Hint: <span> this is the place of hint </span></p> 
-                <p class = "guess-tries"> Remaining Guesses: <span> 10 </span></p>
-                <!-- <p class = "guess-loses"> Wrong letter: <span> </span></p>           -->      
-                </div>     
-        </div>
-            
-           
-
-
-
-
-
-
     <script src="https://cdn.socket.io/4.5.0/socket.io.min.js"
         integrity="sha384-7EyYLQZgWBi67fBtVxw60/OWl1kjsfrPFcaU0pp0nAh+i8FD068QogUvg85Ewy1k"
         crossorigin="anonymous"></script>
@@ -62,6 +18,14 @@
         integrity="sha512-+tu0+vUXyZX+S51npa//IN6znNTLZsBoy8mXn9WzHxfBqYMy6gOzzfTK0VqZf9O171RY9AJviHDokCnvEq8+1A=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
         
+        <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"
+        integrity="sha512-bZS47S7sPOxkjU/4Bt0zrhEtWx0y0CRkhEp8IckzK+ltifIIE9EMIMTuT/mEzoIMewUINruDBIR/jJnbguonqQ=="
+        crossorigin="anonymous"
+        referrerpolicy="no-referrer"
+      ></script>
+
+
     <script src="sketch.js" async defer></script>
 </body>
 
