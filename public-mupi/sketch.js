@@ -1,8 +1,9 @@
 //Siempre tener en cuenta
 //CONTROLLERS
-let Movex;
+let moveX;
 let btnPress;
 let joyBtn;
+let activar;
 
 let img;
 
@@ -22,11 +23,11 @@ let imgDerrota;
 function preload(){
   imgInicio = loadImage("img/Inicio.png");
   imgActivacion = loadImage("img/Activacion.png");
-  pantallaEleccion = loadImage("img/Eleccion1.png");
-  pantallaEleccion2 = loadImage("img/Eleccion2.png");
-  pantallaEleccion3 = loadImage("img/Eleccion3.png");
-  pantallaVictoria = loadImage("img/Victoria.png");
-  pantallaDerrota = loadImage("img/Derrota.png");
+  imgEleccion1 = loadImage("img/Eleccion1.png");
+  imgEleccion2 = loadImage("img/Eleccion2.png");
+  imgEleccion3 = loadImage("img/Eleccion3.png");
+  imgVictoria = loadImage("img/Victoria.png");
+  imgDerrota = loadImage("img/Derrota.png");
 }
 
 
@@ -82,26 +83,51 @@ function draw() {
     case 1:
       background(255,0,0)
       image(imgActivacion,0,0,1600,750)
-      if(pulsador === 1){
+      if(activar === 0){
         screen = 2
       }else{
         screen = 1;
       }
       break;
-/* 
+
     case 2:
-      if (arduinoData.posX > 900){
-        screen = 3;
+      image(imgEleccion1,100,0,1300,750)
+      if (moveX >=0 && moveX<=2){
+        screen ++;
+        console.log(screen)
       }
-      if (arduinoData.PressJostick == 1){
-        image(pantallaDerrota, 100, 0, 1300, 750);
+
+       if(joyBtn ===0){
+        image(imgDerrota,100,0,1300,750)
       }
-      
-      else{
-        image(pantallaEleccion1, 100, 0, 1300, 750);
-      }
+
+      break;
+    
+      case 3:
+        
+        image(imgEleccion2,100,0,1300,750)
+        if (moveX >=0 && moveX<=2){
+          screen =4;
+        }
+        if(joyBtn===0){
+          image(imgVictoria,100,0,1300,750)
+        }
+        if(moveX == 1000){
+          screen =2
+        }
       break;
 
+      case 4:
+        image(imgEleccion3,100,0,1300,750)
+        if(moveX >=522){
+          screen = 3
+        }
+        if(joyBtn ===0){
+          image(imgDerrota,100,0,1300,750)
+        }
+        break;
+
+/*
     case 3:
         if (arduinoData.posX > 900){
           screen = 4;
@@ -131,20 +157,22 @@ function draw() {
       }
     break; 
   }
-
-} */
-
-  }
+*/
+} 
 }
+
+  
 
 socket.on('arduinoMessage', (str) => {
 
   let posX = str.PosX;
+  let activate = str.Pulse;
   
   let change = str.JoystickBtn
 
   moveX = posX;
   joyBtn = change;    
+  activar = activate;
 
   console.log('arduino message:',str);
   
