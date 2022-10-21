@@ -5,7 +5,7 @@
  
 StaticJsonDocument<48> doc;
 int posX = 0;
-int bt;
+int bt = ;  //BOTON ROJO PIN DIGITAL 4
 int joysBt = 10;
 int Xpin = A1;
 int Bzpin = 9;
@@ -14,13 +14,15 @@ int switchPin = 2;
 int switchVal = 0;
 int bzVal = 0;
 
+
+
  
 void setup() {
   pinMode(switchPin,INPUT);
   pinMode(Xpin,INPUT);
   pinMode(joysBt,INPUT);
   pinMode(Bzpin,OUTPUT);
-  digitalWrite(joysBt,HIGH);
+  //digitalWrite(joysBt,HIGH);
 
 
 
@@ -49,7 +51,8 @@ void loop() {
   float x = posX;
   float pulse = switchVal;
   float buzzer = bzVal;
-  // Read temperature as Celsius
+
+
   float btn = bt;
  
   doc["JoystickBtn"] = btn;
