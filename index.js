@@ -55,7 +55,11 @@ parser.on('data',function(arduinoData){
 
 
 })
-
+app.post(`/lead`,(req,res,next)=>{
+    console.log(req.body, "CLIENTE");
+    console.log("POST");
+    res.end;
+})
 
 
 

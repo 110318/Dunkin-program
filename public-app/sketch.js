@@ -165,4 +165,9 @@ function draw() {
 
 function saveUserdata(){
     
+        postData(NGROK + "/lead", newLead).then((data) => {
+          console.log(data, "THE DATA");
+        });
+        console.log(newLead);
+    
 }
