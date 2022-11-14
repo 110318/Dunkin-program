@@ -5,7 +5,7 @@ const express = require('express');
 const { Server } = require('socket.io');
 const {SerialPort,ReadlineParser} = require('serialport');
 const PORT = 5050; // No cambiar
-const SERVER_IP = '192.168.20.36'; // Cambiar por la IP del computador
+const SERVER_IP = '192.168.20.52'; // Cambiar por la IP del computador
 
 //const os = require('os');
 //const IPaddress = os.networkInterfaces().en0[1].address;
@@ -34,7 +34,7 @@ const httpServer = app.listen(PORT, () => {
 
 //🔩SERIAL COMMUNICATION SETUP
 const protocolConfiguration = { // *New: Defining Serial configurations
-    path: '/COM4', //*Change this COM# or usbmodem#####
+    path: '/COM3', //*Change this COM# or usbmodem#####
     baudRate: 9600
 };
 const port = new SerialPort(protocolConfiguration);
@@ -48,7 +48,7 @@ parser.on('data',function(arduinoData){
     str = str.replace(/\r?\n|\r/g, ""); //remove '\r' from this String
     str = JSON.stringify(arduinoData); // Convert to JSON
     str = JSON.parse(arduinoData); //Then parse it
-
+    console.log(str)
     io.emit("arduinoMessage",str);
 
 
