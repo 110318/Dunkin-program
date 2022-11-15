@@ -52,7 +52,11 @@ boton.forEach(function(elemento,index){
 function preload(){
     bgRegister = loadImage('./imgAPP/bgRegistro.png')
     finRegister = loadImage('./imgAPP/Fin.png')
+<<<<<<< HEAD
     btnEnviar = [loadImage('./imgAPP/desactivado.png'),loadImage('./imgAPP/activado.png')]
+=======
+    btnEnviar = [loadImage('./imgAPP/desactivado.png'),loadImage('./images/activado.png')]
+>>>>>>> fac73fb53e407a4933e9fdc15104a05fd0f8812b
 }
 function saveUserData() {
     postData(NGROK + "/lead", newLead).then((data) => {
@@ -164,5 +168,10 @@ function draw() {
 
 
 function saveUserdata(){
+    
+        postData(NGROK + "/lead", newLead).then((data) => {
+          console.log(data, "THE DATA");
+        });
+        console.log(newLead);
     
 }
