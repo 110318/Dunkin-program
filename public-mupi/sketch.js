@@ -18,6 +18,7 @@ let imgEleccion3;
 let imgActivacion;
 let imgVictoria;
 let imgDerrota;
+let qr;
 
 
 function preload() {
@@ -27,6 +28,7 @@ function preload() {
   imgEleccion2 = loadImage("img/Eleccion2.png");
   imgEleccion3 = loadImage("img/Eleccion3.png");
   imgVictoria = loadImage("img/Victoria.png");
+  qr = loadImage("img/qr-code.png")
   imgDerrota = loadImage("img/Derrota.png");
 }
 
@@ -153,10 +155,12 @@ function draw() {
       break;
 
     case 10:
+      image(qr,500,500,800,800)
       image(imgDerrota, 100, 0, 1300, 750)
       break;
 
     case 20:
+      image(qr,500,500,800,800)
       image(imgVictoria, 100, 0, 1300, 750)
       break;
 
@@ -195,7 +199,7 @@ function draw() {
 }
 
 
-
+// va a recibir los datos en posx 
 socket.on('arduinoMessage', (str) => {
 
   let posX = str.PosX;
@@ -210,7 +214,6 @@ socket.on('arduinoMessage', (str) => {
   console.log('arduino message:', str);
 
 })
-
 
 
 

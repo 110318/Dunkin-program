@@ -34,11 +34,11 @@ const httpServer = app.listen(PORT, () => {
 
 //🔩SERIAL COMMUNICATION SETUP
 const protocolConfiguration = { // *New: Defining Serial configurations
-    path: '/COM3', //*Change this COM# or usbmodem#####
+    path: '/COM4', //*Change this COM# or usbmodem#####
     baudRate: 9600
 };
 const port = new SerialPort(protocolConfiguration);
-const parser = port.pipe(new ReadlineParser());
+const parser = port.pipe(new ReadlineParser()); 
 // Run on terminal: ngrok http 5050;
 //se crea el nuevo servidor
 const io = new Server(httpServer, { path: '/real-time' });

@@ -2,11 +2,31 @@ const NGROK = `https://${window.location.hostname}`;
 console.log('Server IP: ', NGROK);
 let socket = io(NGROK, { path: '/real-time' });
 
+//Imagenes
+let bgRegister;
+let btnEnviar = [];
+let finRegister;
 
+
+
+//SCREENS 
+let screen;
+//LEAD
+
+
+let newLead = {
+    nickname: "",
+    gmail: "",
+    age: "",
+  };
+ 
 let userInput;
 let userData=[];
 let inputNickname;
+let inputAge;
+let inputMail;
 let saveUserDataButton;
+
 const postData = async (url = "", data = {}) => {
     const response = await fetch(url, {
       method: "POST",
@@ -18,12 +38,7 @@ const postData = async (url = "", data = {}) => {
     });
     return data;
   };
-let isTouched = false
-let newLead = {
-    nickname: "",
-    gmail: "",
-    age: "",
-  };
+
 //let boton = document.querySelectorAll(".boton")
 /*
 boton.forEach(function(elemento,index){
@@ -32,6 +47,13 @@ boton.forEach(function(elemento,index){
     })
 })
 */
+
+
+function preload(){
+    bgRegister = loadImage('./imgAPP/bgRegistro.png')
+    finRegister = loadImage('./imgAPP/Fin.png')
+    btnEnviar = [loadImage('./imgAPP/desactivado.png'),loadImage('./imgAPP/activado.png')]
+}
 function saveUserData() {
     postData(NGROK + "/lead", newLead).then((data) => {
       console.log(data, "THE DATA");
@@ -39,10 +61,6 @@ function saveUserData() {
     console.log(newLead);
   }
 
-let btn = createButton("No mostrar")
-btn.mousePressed(function(){
-    DeviceMotionEvent.requestPermission();
-})
 
 function setup() {
     canvas = createCanvas(windowWidth, windowHeight);
@@ -50,82 +68,100 @@ function setup() {
     canvas.style('top', '0');
     canvas.style('right', '0');
 
-    userInput = createInput('');
-    userInput.position((windowWidth / 2) - 80, windowHeight - 100);
-    userInput.size(200);
-    userInput.input(myInputEvent);
+   
 
-  inputNickname = createInput("", "text");
-  inputNickname.position((windowWidth / 2)-80, windowHeight / 2);
-  inputNickname.input(onInputNickname);
-  inputNickname.style("display", "none");
+    screen = 0
 
-  saveUserDataButton = createButton();
-  saveUserDataButton.position(windowWidth / 2.5, windowHeight / 1.5);
-
-  saveUserDataButton.mousePressed(saveUserData);
- 
-
-
-
-
-
-
-    socket.emit('char', {char: true});
-    console.log(socket)
-
-    socket.on('has_won', (value) => {
-        console.log("hey! esta es mi value",value)
-        userInput.hide();
-        inputNickname.style("display", "block");
-        displayScreens();
-    });
-}
-
-function displayScreens(){
-    appWrapper = document.querySelector('#seccion-uno');
-    appWrapper.style.display = "none"
-
-    appInterface = document.querySelector('#interfazApp')
-    appInterface.style.display = "block"
+  
+    inputNickname = createInput("", "text");
+    inputNickname.position(59, 450);
+    inputNickname.size(500  )
+    inputNickname.input(onInputNickname);
+   
+  
+    inputMail = createInput("");
+    inputMail.position(59, 578);
+    inputMail.size(500  )
+  
+    inputMail.input(onInputMail);
     
- 
+    //inputNickname.style("display", "none");
+  
+  
+    inputAge = createInput("");
+    inputAge.position(59,744);
+    inputAge.size(500  )
+  
+    inputAge.input(onInputAge);
+    
+//  inputNickname.style("display", "none");
+
+
+  
+
+
+
+
+
+
+saveUserDataButton = createButton();
+saveUserDataButton.position(windowWidth / 2.5, windowHeight / 1.5);
+saveUserDataButton.style("background-color:red");
+
+saveUserDataButton.mousePressed(saveUserData);
+
+
+
+
+
+
+
+
+
+
+
+
 }
 
-function onInputNickname(){
+function draw() {
+    background(220);
+  
+    switch(screen){
+      case 0:
+      image(bgRegister,0,0,800,1400)
+      fill("Salmon");
+       textSize(16);
+       textAlign(CENTER);
+       text("(" + floor(mouseX) + ", " + floor(mouseY) + ")", mouseX, mouseY);
+       break;
+  
+  
+       case 1:
+        image(finRegister,0,0,800,1400)
+       break;
+    }
+  
+  
+  
+  }
+
+
+  function onInputNickname(){
     newLead.nickname = this.value();
     console.log(this.value());
-}
+  }
+  
+  function onInputMail(){
+    newLead.gmail = this.value();
+    console.log(this.value())
+  }
+  function onInputAge(){
+    newLead.age = this.value();
+    console.log(this.value());
+  }
 
-// Coge el valor que viene de la integración
-//This.value es el valor
-function myInputEvent() {
-    char = this.value()
-    console.log(char);
 
-//Espera los segundos del time out y limpia para que quede limpio
-    setTimeout(() => {
-        userInput.value('');
-    }, 200);
 
-//Envia el sistema char y dice que el valor esta en char y lo muestra por consola para ver que esta haciendo
-//Char es el nombre del evento que se esta transmitiendo
-//Clave y valor del diccionario y adentro esta lo que se escribe con el celular
-    socket.emit('char', {char: char});
-    console.log(socket)
-
-}
-
-function touchStarted(){
-    isTouched = true;
-}
-function touchEnded(){
-    isTouched = false
-}
-
-function windowResized(){
-    resizeCanvas(windowWidth,windowHeight);
-}
 
 function saveUserdata(){
     
