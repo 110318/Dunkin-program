@@ -1,16 +1,12 @@
-//Siempre tener en cuenta
-//CONTROLLERS
+//Controles
 let moveX;
 let btnPress;
 let joyBtn;
 let activar;
-
 let img;
 
 
-
-
-//🏙️IMAGES
+//Imágenes
 let imgInicio;
 let imgEleccion1;
 let imgEleccion2;
@@ -33,9 +29,6 @@ function preload() {
 }
 
 
-
-
-
 const NGROK = `https://${window.location.hostname}`;
 let socket = io(NGROK, { path: "/real-time" });
 console.log("Server IP: ", NGROK);
@@ -54,7 +47,6 @@ let screen = 0;
 function setup() {
   frameRate(60);
   canvas = createCanvas(windowWidth, windowHeight);
-
   canvas.style("z-index", "-1");
   canvas.style("position", "fixed");
   canvas.style("top", "0");
@@ -65,9 +57,6 @@ function setup() {
   controllerY = windowHeight / 2;
   mupiWidth = windowWidth;
   mupiHeight = windowHeight;
-  //background(0);
-
-
 }
 
 
@@ -199,7 +188,7 @@ function draw() {
 }
 
 
-// va a recibir los datos en posx 
+//Va a recibir los datos en posx 
 socket.on('arduinoMessage', (str) => {
 
   let posX = str.PosX;
