@@ -38,7 +38,7 @@ const protocolConfiguration = { // *New: Defining Serial configurations
     baudRate: 9600
 };
 const port = new SerialPort(protocolConfiguration);
-const parser = port.pipe(new ReadlineParser());
+const parser = port.pipe(new ReadlineParser()); 
 // Run on terminal: ngrok http 5050;
 //se crea el nuevo servidor
 const io = new Server(httpServer, { path: '/real-time' });
@@ -55,7 +55,11 @@ parser.on('data',function(arduinoData){
 
 
 })
-
+app.post(`/lead`,(req,res,next)=>{
+    console.log(req.body, "CLIENTE");
+    console.log("POST");
+    res.end;
+})
 
 
 

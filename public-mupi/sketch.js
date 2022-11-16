@@ -1,16 +1,12 @@
-//Siempre tener en cuenta
-//CONTROLLERS
+//Controles
 let moveX;
 let btnPress;
 let joyBtn;
 let activar;
-
 let img;
 
 
-
-
-//🏙️IMAGES
+//Imágenes
 let imgInicio;
 let imgEleccion1;
 let imgEleccion2;
@@ -18,6 +14,7 @@ let imgEleccion3;
 let imgActivacion;
 let imgVictoria;
 let imgDerrota;
+let qr;
 
 
 function preload() {
@@ -27,11 +24,9 @@ function preload() {
   imgEleccion2 = loadImage("img/Eleccion2.png");
   imgEleccion3 = loadImage("img/Eleccion3.png");
   imgVictoria = loadImage("img/Victoria.png");
+  qr = loadImage("img/qr-code.png")
   imgDerrota = loadImage("img/Derrota.png");
 }
-
-
-
 
 
 const NGROK = `https://${window.location.hostname}`;
@@ -52,7 +47,6 @@ let screen = 0;
 function setup() {
   frameRate(60);
   canvas = createCanvas(windowWidth, windowHeight);
-
   canvas.style("z-index", "-1");
   canvas.style("position", "fixed");
   canvas.style("top", "0");
@@ -63,9 +57,6 @@ function setup() {
   controllerY = windowHeight / 2;
   mupiWidth = windowWidth;
   mupiHeight = windowHeight;
-  //background(0);
-
-
 }
 
 
@@ -194,8 +185,7 @@ function draw() {
   }
 }
 
-
-
+//Va a recibir los datos en posx 
 socket.on('arduinoMessage', (str) => {
 
   let posX = str.PosX;
@@ -210,7 +200,6 @@ socket.on('arduinoMessage', (str) => {
   console.log('arduino message:', str);
 
 })
-
 
 
 
